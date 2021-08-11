@@ -1,0 +1,5 @@
+Taken from https://github.com/docker-library/python/blob/master/3.9/buster/Dockerfile
+
+Modified to use ubuntu instead of Debian.
+
+For example, to be able to use a newer libpango: https://github.com/Kozea/WeasyPrint/issues/1384
