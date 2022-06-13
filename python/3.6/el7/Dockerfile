@@ -6,8 +6,7 @@ FROM centos:7
 # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
 ENV LANG C.UTF-8
 
-RUN yum install -y centos-release-scl gcc && \
-    yum install -y rh-python38-python rh-python38-python-devel  rh-python38-python-pip
+RUN yum install -y python3 python3-devel python3-pip
 
 ENV PATH /opt/rh/rh-python38/root/bin/:$PATH
 
@@ -17,7 +16,6 @@ ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 ENV POETRY_NO_INTERACTION=1
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python3.8 && chmod 755 /opt/poetry/bin/poetry
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python3 && chmod 755 /opt/poetry/bin/poetry
 
-ENTRYPOINT [ "scl", "enable", "rh-python38", "--" ]
-CMD ["python3.8"]
+CMD ["python3"]
