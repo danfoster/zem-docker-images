@@ -19,7 +19,12 @@ help: ## This help.
 # DOCKER TASKS
 # Build the container
 build: ## Build the container
-	docker build -t $(TAG) .
+	docker build -t $(TAG)   --platform linux/amd64,linux/arm64 .
+
+# Can't use multi-platform build with --load, so have a different target for local testing
+# https://docs.docker.com/build/building/multi-platform/#prerequisites
+load:
+	docker build -t $(TAG)  --load .
 
 run: ## Run container on port configured in `config.env`
 	docker run -i -t --rm $(TAG)
